@@ -28,8 +28,8 @@ import com.alibaba.fastjson.JSONObject;
 //本示例程序中的appId,appSecret以及deviceTokens需要用户自行替换为有效值
 public class PushTransMsg
 {
-    private static String appSecret = "55631f1cc60b5bf3a25b593bb2c5e583";
-    private static  String appId = "100242971";//用户在华为开发者联盟申请的appId和appSecret（会员中心->应用管理，点击应用名称的链接）
+    private static String appSecret = "dde1327b007097e9dec9cbd1c06bdef9";
+    private static  String appId = "100246459";//用户在华为开发者联盟申请的appId和appSecret（会员中心->应用管理，点击应用名称的链接）
     private static  String tokenUrl = "https://login.cloud.huawei.com/oauth2/v2/token";//获取认证Token的URL
     private static  String apiUrl = "https://api.push.hicloud.com/pushsend.do"; //应用级消息下发API
     private static  String accessToken;//下发通知消息的认证Token
@@ -38,7 +38,7 @@ public class PushTransMsg
     public static void main(String[] args) throws IOException
     {
         refreshToken();
-        sendPushMessage("0865371034938020300001618500CN01");
+        sendPushMessage("0865371034938020300001633100CN01");
     }
     
     //获取下发通知消息的认证Token

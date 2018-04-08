@@ -22,6 +22,8 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -38,6 +40,8 @@ public class PushNcMsg implements Runnable
     private static  String accessToken;//下发通知消息的认证Token
     private static  long tokenExpiredTime;  //accessToken的过期时间
     
+    
+    private static Logger logger = LogManager.getLogger("PushNcMsg");
     private int port = 9050;
     
     @Override
@@ -61,6 +65,8 @@ public class PushNcMsg implements Runnable
     
     public static void main(String[] args) throws IOException
     {
+    	logger.info("log4j start!");
+    	
         refreshToken();
         PushNcMsg ncMsg = new PushNcMsg();
         //ncMsg.run();
@@ -99,10 +105,12 @@ public class PushNcMsg implements Runnable
         body.put("content", "Push message content");//消息内容体
         
         JSONObject param = new JSONObject();
-        param.put("appPkgName", "com.example.yuwan.pushtest");//定义需要打开的appPkgName
+        //param.put("appPkgName", "com.example.yuwan.pushtest");//定义需要打开的appPkgName
+        param.put("intent","intent://com.example.yuwan.pushtest.otheractivity?testIntent=test#Intent;scheme=push;launchFlags=0x4000000;end");
         
         JSONObject action = new JSONObject();
-        action.put("type", 3);//类型3为打开APP，其他行为请参考接口文档设置
+        //action.put("type", 3);//类型3为打开APP，其他行为请参考接口文档设置
+        action.put("type", 1);
         action.put("param", param);//消息点击动作参数
         
         JSONObject msg = new JSONObject();
