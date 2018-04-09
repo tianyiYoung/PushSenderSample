@@ -65,12 +65,13 @@ public class PushNcMsg implements Runnable
     
     public static void main(String[] args) throws IOException
     {
-    	logger.info("log4j start!");
+    	for(int i = 0; i < 40; i++)
+    		logger.info("log4j start!" + i);
     	
-        refreshToken();
-        PushNcMsg ncMsg = new PushNcMsg();
+        //refreshToken();
+        //PushNcMsg ncMsg = new PushNcMsg();
         //ncMsg.run();
-        sendPushMessage("0865371034938020300001633100CN01");
+        //sendPushMessage("0865371034938020300001633100CN01");
     }
     
     //获取下发通知消息的认证Token

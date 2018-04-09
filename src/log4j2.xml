@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>  
-<configuration status="OFF">  
+<configuration monitorInterval="120">  
+<!-- 服务运行过程中，log4j2能够在120s后重新加载配置 --> 
+  <Properties>
+    <Property name="baseDir">javalogs</Property>
+  </Properties>
   <appenders>  
     <Console name="Console" target="SYSTEM_OUT">  
       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>  
-    </Console>  
+    </Console>
+   <RollingFile name="RollingFile" fileName="${baseDir}/androidpush.log"
+    			     filePattern="${baseDir}/${date:yyyyMMdd}/androidpush_%i_${date:MMddHHmm}.log">
+      <PatternLayout pattern="%d{HH:mm:ss z} %-5level %class{36}:%L:%M - %msg%xEx%n"/>
+      <SizeBasedTriggeringPolicy size="4 KB"/>
+       <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+      <DefaultRolloverStrategy>
+    	<Delete basePath="${baseDir}" maxDepth="2">
+    	  <IfFileName glob="*/androidpush_*.log" />
+    	  <IfLastModified age="30d" />
+    	</Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>   
   </appenders>  
   <loggers>  
-    <root level="trace">  
+    <root level="trace">
+      <appender-ref ref="RollingFile"/>  
       <appender-ref ref="Console"/>  
     </root>  
   </loggers>  
