@@ -41,7 +41,7 @@ public class PushNcMsg implements Runnable
     private static  long tokenExpiredTime;  //accessToken的过期时间
     
     
-    private static Logger logger = LogManager.getLogger("PushNcMsg");
+    private static Logger logger = LogManager.getLogger();
     private int port = 9050;
     
     @Override
@@ -65,8 +65,9 @@ public class PushNcMsg implements Runnable
     
     public static void main(String[] args) throws IOException
     {
-    	for(int i = 0; i < 40; i++)
-    		logger.info("log4j start!" + i);
+    	for(int i = 0; i < 140; i++) {
+    		logger.info("log4j {} start!,{}",2,"i");
+    	}
     	
         //refreshToken();
         //PushNcMsg ncMsg = new PushNcMsg();

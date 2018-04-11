@@ -12,13 +12,12 @@
     			     filePattern="${baseDir}/${date:yyyyMMdd}/androidpush_%i_${date:MMddHHmm}.log">
       <PatternLayout pattern="%d{HH:mm:ss z} %-5level %class{36}:%L:%M - %msg%xEx%n"/>
       <SizeBasedTriggeringPolicy size="4 KB"/>
-       <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
-      <DefaultRolloverStrategy>
+      <!-- <DefaultRolloverStrategy>
     	<Delete basePath="${baseDir}" maxDepth="2">
     	  <IfFileName glob="*/androidpush_*.log" />
     	  <IfLastModified age="30d" />
     	</Delete>
-      </DefaultRolloverStrategy>
+      </DefaultRolloverStrategy> -->
     </RollingFile>   
   </appenders>  
   <loggers>  
